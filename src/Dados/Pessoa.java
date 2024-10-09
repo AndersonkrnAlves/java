@@ -8,6 +8,19 @@ public class Pessoa {
     private String telefone;
     private int idade;
 
+    public void setIdade(int idade){
+        
+        if (testeIdade(idade)) {
+
+            this.idade = idade;
+
+        } else {
+
+            this.idade = 0;
+        }
+        
+    }
+
     public int getIdade(){
         return idade;
     }
@@ -20,20 +33,26 @@ public class Pessoa {
         return nome;
     }
 
-    public void setNome(String noome){
+    public void setNome(String nome){
         this.nome = nome;
     }
 
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
     public Pessoa() {
-        idade = 0;
-        nome = "";
-        telefone = "";
+        this("", "", 0);
     }
 
     public Pessoa(String nom, String tel, int id) {
-        nome = nom;
-        telefone = tel;
-        idade = id;
+        this.setNome(nom);
+        this.setTelefone(tel);
+        this.setIdade(id);
     }
     
     public boolean testeIdade(int idade) {
@@ -46,13 +65,11 @@ public class Pessoa {
     }
 
     public String mostrarDados() {
-        String retorno = "Nome: " + nome + " Idade: " + idade + " Telefone: " + telefone;
+        String retorno = "Nome: " + this.getNome() + " Idade: " + this.getIdade() + " Telefone: " + this.getTelefone();
         return retorno;
     }
     public Pessoa(Pessoa nova){
-        this.nome = nova.nome;
-        this.idade = nova.idade;
-        this.telefone = nova.telefone;
+        this(nova.getNome(), nova.getIdade(), nova.getTelefone());
     }
 }
 
