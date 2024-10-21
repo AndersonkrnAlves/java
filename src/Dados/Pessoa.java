@@ -1,25 +1,10 @@
 package Dados;
 
-import javax.xml.catalog.GroupEntry.PreferType;
-
 public class Pessoa {
     
     private String nome;
     private String telefone;
     private int idade;
-
-    public void setIdade(int idade){
-        
-        if (testeIdade(idade)) {
-
-            this.idade = idade;
-
-        } else {
-
-            this.idade = 0;
-        }
-        
-    }
 
     public int getIdade(){
         return idade;
@@ -46,7 +31,9 @@ public class Pessoa {
     }
 
     public Pessoa() {
-        this("", "", 0);
+        this.setIdade(0);
+        this.setNome("");
+        this.setTelefone("");
     }
 
     public Pessoa(String nom, String tel, int id) {
@@ -54,12 +41,17 @@ public class Pessoa {
         this.setTelefone(tel);
         this.setIdade(id);
     }
+    public Pessoa(Pessoa nova){
+        this.setNome(nova.getNome());
+        this.setTelefone(nova.getTelefone());
+        this.setIdade(nova.getIdade());
+    }
     
     public boolean testeIdade(int idade) {
         
         if (idade >= 0) {
             return true;
-        } else {
+        }else{
             return false;
         }
     }
@@ -67,9 +59,6 @@ public class Pessoa {
     public String mostrarDados() {
         String retorno = "Nome: " + this.getNome() + " Idade: " + this.getIdade() + " Telefone: " + this.getTelefone();
         return retorno;
-    }
-    public Pessoa(Pessoa nova){
-        this(nova.getNome(), nova.getIdade(), nova.getTelefone());
     }
 }
 
